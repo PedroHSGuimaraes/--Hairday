@@ -3,7 +3,7 @@
  * Este componente cria um modal elegante que pode ser usado para substituir os alerts
  */
 
-export class Modal {
+class Modal {
   constructor() {
     // Cria o elemento do modal
     this.modal = document.createElement("div");
@@ -112,3 +112,5 @@ export class Modal {
     this.modal.style.display = "none";
   }
 }
+
+export { Modal };
