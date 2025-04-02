@@ -5,3 +5,4 @@ import "./styles/form.css";
 import "./styles/schedule.css";
 import "./models/form/submit.js";
 import "./models/page-load.js";
+import "./components/Modal.js";
