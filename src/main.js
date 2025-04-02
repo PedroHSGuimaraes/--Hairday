@@ -5,4 +5,5 @@ import "./styles/form.css";
 import "./styles/schedule.css";
 import "./models/form/submit.js";
 import "./models/page-load.js";
+import "./models/form/date-change.js";
 import "./components/Modal.js";
