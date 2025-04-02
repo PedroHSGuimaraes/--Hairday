@@ -4,10 +4,18 @@ import dayjs from "dayjs";
 // Cria uma instância do modal
 const modal = new Modal();
 
-export async function scheduleNew({ name, hour, when }) {
+export async function scheduleNew({ id, name, hour, when }) {
   try {
     // Formata a data para o formato esperado pela API
     const formattedDate = dayjs(when).format("YYYY-MM-DD");
+
+    console.log("Dados sendo enviados:", {
+      id,
+      name,
+      hour,
+      date: formattedDate,
+      when: when.toISOString(),
+    });
 
     const response = await fetch(`http://localhost:3333/schedules`, {
       method: "POST",
@@ -15,6 +23,7 @@ export async function scheduleNew({ name, hour, when }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id,
         name,
         hour,
         date: formattedDate,
@@ -22,14 +31,19 @@ export async function scheduleNew({ name, hour, when }) {
       }),
     });
 
+    console.log("Status da resposta:", response.status);
+
     if (!response.ok) {
       throw new Error("Erro ao criar agendamento");
     }
 
     const data = await response.json();
+    console.log("Dados recebidos da API:", data);
+
     modal.show("Agendamento criado com sucesso!");
     return data;
   } catch (error) {
+    console.error("Erro completo:", error);
     modal.show(`
       Não foi possível criar o agendamento.
       
