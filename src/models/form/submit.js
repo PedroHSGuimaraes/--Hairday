@@ -17,9 +17,22 @@ form.onsubmit = (event) => {
 
   try {
     const name = clientName.value.trim();
-    console.log(" name:", name);
+    if (!name) {
+      modal.show("Nome é obrigatório");
+    }
+    const hourSelected = document.querySelector(".hour-selected");
+
+    if (!hourSelected) {
+      modal.show("Horário é obrigatório");
+    }
+
+    const [hour] = hourSelected.innerText.split(":");
+
+    const when = dayjs(selectDate.value).add(hour, "hour");
+    const id = new Date().getTime();
+
+    console.log({ id, name, hour, when });
   } catch (error) {
-    console.log(error);
     modal.show(`
       Não foi possível fazer o agendamento.
     
